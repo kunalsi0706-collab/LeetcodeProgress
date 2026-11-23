@@ -2,23 +2,20 @@ class ProductOfNumbers {
 public:
     vector<int> prefix ;
     ProductOfNumbers() {
-         prefix = {1} ;
+        prefix = {1} ;
     }
     
     void add(int num) {
-        if (num == 0) {
-            prefix = {1};
-        } else {
-            prefix.push_back(prefix.back() * num);
-        }
+        if(num == 0) prefix = {1} ;
+        else{
+            prefix.push_back(num * prefix.back()) ;
+        } 
     }
     
     int getProduct(int k) {
-        int n = prefix.size();
-        if (k >= n) {
-            return 0;
-        }
-        return prefix.back() / prefix[n - 1 - k];
+        int n = prefix.size() ;
+        if(n > k) return prefix.back()/prefix[n - k - 1] ;
+        else return 0 ;
     }
 };
 
